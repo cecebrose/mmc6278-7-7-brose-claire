@@ -1,94 +1,93 @@
-(function() {
-    function buildQuiz() {
-      
-      document.getElementById("quiz").style.visibility = "hidden"
-      const output = [];
-    
-      myQuestions.forEach((currentQuestion, questionNumber) => {
-        const answers = [];
-    
-        for (letter in currentQuestion.answers) {
-          answers.push(
-            `<label>
-            <input name="question${questionNumber}" value="${letter}">
-            ${letter} :
-            ${currentQuestion.answers[letter]}
-          </label>`
-          );
-        };
-    
-      quizContainer.innerHTML = output.join("");
-    
-    window.onload = function () {
-        const quizContainer = document.getElementById("quiz");
-                var questionsArr = [
-                    {
-                      question: "What color is a polar bear's skin?",
-                      answers: {
-                        a: "Pink",
-                        b: "Black",
-                        c: "White"
-                      },
-                      correctAnswer: "b"
-                    },
-                    {
-                      question: "What was the first toy to be advertised on television?",
-                      answers: {
-                        a: "Mr. Potato Head",
-                        b: "Slinky",
-                        c: "Barbie"
-                      },
-                      correctAnswer: "a"
-                    },
-                    {
-                      question: "What was the first feature-length animated movie ever released?",
-                      answers: {
-                        a: "The Little Mermaid",
-                        b: "Cinderella",
-                        c: "Toy Story",
-                        d: "Snow White & The Seven Dwarfs"
-                      },
-                      correctAnswer: "d"
-                    },
-                    {
-                        question: "Area 51 is located in which US state?",
-                        answers: {
-                          a: "Nevada",
-                          b: "New Mexico",
-                          c: "Arizona"
-                        },
-                        correctAnswer: "a"
-                      },
-                      {
-                        question: "How many hearts does an octopus have?",
-                        answers: {
-                          a: "3",
-                          b: "1",
-                          c: "8"
-                        },
-                        correctAnswer: "a"
-                      },
-                      {
-                        question: "What is the largest organ of the human body?",
-                        answers: {
-                          a: "Intestine",
-                          b: "Bladder",
-                          c: "Skin",
-                          d: "Heart"
-                        },
-                        correctAnswer: "c"
-                    }
-                ];
-            };
-        var correctAnswer = 0;
 
-        for (var i = 0; i < questions.length; i++) {
-            var answer = prompt(questions[i][0]);
-            if (answer.toUpperCase() == questions[i][1]) {
-                alert("Correct! " + questions[i][2]);
-                correctAnswers++;
-            }
-            else {
-                alert("incorrect, the correct answer was " + questions[i][1]);
-            }
-        };
+var btn = document.getElementById('start-quiz');
+console.log(btn);
+btn.addEventListener('click', function() {
+    console.log(clicked)
+});
+
+
+var quizBtn = document.querySelector('quiz');
+console.log(quizBtn);
+
+var questionsArr = [
+    {
+      question: 'What color is a polar bears skin?',
+      answer: 'Black',
+      options: [
+        'Purple',
+        'Black',
+        'White',
+        'Pink',
+      ]
+    },
+    {
+      question: 'What color is a giraffe tongue?',
+      answer: 'Purple',
+      options: [
+        'Purple',
+        'Black',
+        'Red',
+        'Pink',
+      ]
+    },
+    {
+      question: 'How many hearts does an octopus have?',
+      answer: 'Three',
+      options: [
+        'One',
+        'Two',
+        'Three',
+        'Four',
+      ]
+    },
+      {
+      question: 'How many bones does a shark have?',
+      answer: 'None',
+      options: [
+        'Seventy',
+        'One hundred',
+        'Two thousand',
+        'None',
+      ]
+    },
+    {
+      question: 'Which animal does not have vocal cords?',
+      answer: 'Giraffe',
+      options: [
+        'Sloth',
+        'Giraffe',
+        'Elephant',
+        'Whale',
+      ]
+    },
+  ];
+console.log('questionsArr');
+
+var intervalId = setInterval(function (){
+   var seconds = Number(quiz.textContent) - 1
+   if (seconds === -1) {
+       clearInterval(intervalId)
+       quiz.textContent = 'refresh to go again'
+   } else {
+       quiz.textContent = seconds
+   }
+}, 1000);
+
+var btns = document.querySelectorAll('.buttons > button');
+var span = dosument.getElementById('clicked');
+console.log(btns, span);
+
+for (var i =0; i < btns.length; i++){
+    btns[i].addEventListener('click', function() {
+        span.textContent = this.textContent
+    })
+};
+
+localStorage.setItem("score");
+var score = localStorage.getItem("score");
+console.log(score);
+var newPageLoadCountValue = Number(localStorage.getItem('previous-score')) + 1;
+localStorage.setItem('previous-score', newPageLoadCountValue);
+console.log(previous-score);
+
+
